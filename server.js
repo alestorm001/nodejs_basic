@@ -10,8 +10,8 @@ MongoClient.connect('mongodb+srv://test:sparta@cluster0.hwebk.mongodb.net/?retry
     if(err) return console.log(err)
     db = client.db('todoapp');
 
-    app.listen(8080, function () {
-    console.log('listening on port 8080')
+    app.listen(3000, function () {
+    console.log('listening on port 3000')
 });
 
 })

@@ -79,3 +79,13 @@ app.get('/detail/:id', function(req, res){
         res.render('detail.ejs', { data : result });
     })
 })
+
+
+
+// app.get('/edit/:id', function(req, res){
+
+//     db.collection('post').findOne({_id: parseInt(res.params.id)}, function(err,result){
+//         console.log(result)l;
+//         res.render('edit.ejs', { post : result })
+//     })
+// })

@@ -5,6 +5,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const MongoClient = require('mongodb').MongoClient;
 app.set('view engine', 'ejs');
 
+app.use('/public', express.static('public'));
+
 MongoClient.connect('mongodb+srv://test:sparta@cluster0.hwebk.mongodb.net/?retryWrites=true&w=majority', function (err, client){
 
     if(err) return console.log(err)
@@ -60,3 +62,20 @@ app.get('/list', function(req, res){
         res.render('list.ejs', { posts : result });
     });
 });
+
+app.delete('/delete', function(req, res){
+    console.log(req.body)
+    req.body._id = parseInt(req.body._id);
+    db.collection('post').deleteOne(req.body, function(err,result){
+        console.log('삭제완료');
+        res.status(200).send({ message : '성공했습니다'});
+    })
+})
+
+
+app.get('/detail/:id', function(req, res){
+    db.collection('post').findOne({_id : parseInt(req.params.id)}, function(err,result){
+        console.log(result);
+        res.render('detail.ejs', { data : result });
+    })
+})
